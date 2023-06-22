@@ -1,0 +1,31 @@
+// Variables
+@import 'variables';
+@import 'root';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*:after, *:before, * {
+   box-sizing: border-box;
+}
+
+html, body {
+   height: 100%;
+}
+
+body {
+   margin: 0;
+   font-size: 18px;
+   line-height: 1.6;
+   font-family: 'Manrope', sans-serif;
+}
+
+svg {
+   width: 1.4em;
+   height: 1.4em;
+}
+
+input {
+   outline: none;
+}
