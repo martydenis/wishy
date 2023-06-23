@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use App\Models\Wishlist;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\AppController::class, 'index'])->name('app');
+
+Route::get('/users', function () {
+  $user = User::factory()->create();
+});
+
+Route::get('/wishlists', function () {
+  $wishlist = Wishlist::factory(10)->create();
+});

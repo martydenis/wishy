@@ -19,7 +19,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('wishlists/get', function () {
+    $wishlists = Wishlist::all();
 
-Route::get('wishlists', function () {
-    return Wishlist::all();
+    $wishlists->each(function($wishlist) {
+        $wishlist->user;
+    });
+
+    return $wishlists;
+});
+
+Route::post('wishlists/delete/', function (Request $request) {
+    $id = $request->input('id');
+    return Wishlist::destroy($id);
 });

@@ -12,7 +12,7 @@ class Wishlist extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'wishlist_id',
         'name',
         'description'
     ];
@@ -20,8 +20,8 @@ class Wishlist extends Model
     /**
      * Get the user that owns the wishlist.
      */
-    public function user() : BelongsTo
+    public function wishlist() : BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Wishlist::class);
     }
 }

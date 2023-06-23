@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use \App\Models\Wishlist;
 
 class AppController extends Controller
 {
     //
     public function index() {
-        $wishlists = \App\Models\Wishlist::all();
+        // $wishlists = Wishlist::all();
 
         // $wishlist->name = 'My first wishlist';
         // $wishlist->description = 'Little description';
@@ -16,6 +16,7 @@ class AppController extends Controller
         // $wishlist->save();
         // dd($wishlist);
 
-        return view('app', compact('wishlists'));
+        // return view('app', compact('wishlists'));
+        return view('app');
     }
 }
