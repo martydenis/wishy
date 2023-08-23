@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\AppController::class, 'index'])->name('app');
+Route::get('/{any}', [App\Http\Controllers\AppController::class, 'index'])
+  ->where('any', '.*')
+  ->name('app');
 
 Route::get('/users', function () {
   $user = User::factory()->create();

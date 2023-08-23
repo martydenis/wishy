@@ -2,21 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use \App\Models\Wishlist;
-
 class AppController extends Controller
 {
     //
-    public function index() {
-        // $wishlists = Wishlist::all();
+    public function index()
+    {
+        $initial_data = $this->getInitialData();
 
-        // $wishlist->name = 'My first wishlist';
-        // $wishlist->description = 'Little description';
-        // $wishlist->owner_id = 1;
-        // $wishlist->save();
-        // dd($wishlist);
+        return view('app', compact('initial_data'));
+    }
 
-        // return view('app', compact('wishlists'));
-        return view('app');
+    // 
+    protected function getInitialData()
+    {
+        $user = auth()->user();
+        $initial_data = [];
+
+        if ($user != null) {
+            $initial_data = [
+                'user_wishlists' => $user->wishlists,
+                'friends' => [
+                    'accepted' => $user->getFriends(),
+                    'pending' => $user->getPendingInvites(),
+                ]
+            ];
+        }
+
+        return $initial_data;
     }
 }

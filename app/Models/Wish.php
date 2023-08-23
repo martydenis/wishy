@@ -2,19 +2,27 @@
 
 namespace App\Models;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Wishlist extends Model
+class Wish extends Model
 {
     use HasFactory;
+
+    protected $table = 'wishes';
 
     protected $fillable = [
         'wishlist_id',
         'name',
-        'description'
+        'description',
+        'url',
+        'checked',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
     ];
 
     /**

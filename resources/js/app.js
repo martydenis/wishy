@@ -5,8 +5,10 @@
  */
 
 import './bootstrap';
-import { createApp } from 'vue';
-import App from './App.vue';
+import { createApp } from 'vue'
+import eventbus from './event-bus.js'
+import App from './App.vue'
+import store from './stores.js'
 import router from './routes.js'
 
 
@@ -33,7 +35,7 @@ const app = createApp(App);
 /**
  * 
 */
-// app.provide('initialData', window.initialData)
+// app.provide('initialData', window.wishlists)
 
 // const injected = app.runWithContext(() => {
 //   return inject('initialData');
@@ -45,5 +47,7 @@ const app = createApp(App);
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
 
+app.use(store);
+app.use(eventbus);
 app.use(router);
 app.mount('#app');

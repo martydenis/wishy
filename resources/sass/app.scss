@@ -6,27 +6,178 @@
 @tailwind components;
 @tailwind utilities;
 
-*:after, *:before, * {
-   box-sizing: border-box;
+*:after,
+*:before,
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --scrollbar-width: 0px;
 }
 
 html {
-   height: 100%;
+  height: 100%;
+  font-size: 16px;
+  color-scheme: dark;
 }
 
 body {
-   min-height: 100%;
-   margin: 0;
-   font-size: 18px;
-   line-height: 1.6;
-   font-family: 'Manrope', sans-serif;
+  min-height: 100%;
+  margin: 0;
+  font-size: clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem);
+  line-height: 1.6;
+  font-family: 'Manrope', sans-serif;
 }
 
 svg {
-   width: 1.4em;
-   height: 1.4em;
+  width: 1.25em;
+  height: 1.25em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 input {
-   outline: none;
+  outline: none;
+}
+
+@layer base {
+  h1 {
+    @apply text-4xl/tight md:text-5xl/tight font-extrabold mb-[0.4em] text-slate-200;
+  }
+}
+
+@layer components {
+  .wish {
+    &.checked {
+      @apply text-slate-500;
+    }
+    &.disabled {
+      @apply bg-slate-900;
+    }
+    &.error {
+      @apply text-rose-500;
+    }
+    // &.checked.disabled {
+    //   @apply bg-slate-200 border-slate-300 pointer-events-none;
+    // }
+  }
+
+  input, select, textarea {
+    outline: none;
+    @apply bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 px-3 py-1 h-10 sm:h-12 rounded-md block w-full duration-300 text-[16px];
+    transition-property: color, border-color, box-shadow, background;
+
+    &:focus {
+      @apply border-sky-500 border-transparent ring-2 ring-sky-500;
+    }
+
+    &.error {
+      @apply text-rose-300 border-rose-500;
+
+      &:focus {
+        @apply border-sky-500 border-transparent ring-rose-500;
+      }
+    }
+
+    &.success {
+      @apply border-lime-400 text-lime-600;
+
+      &:focus {
+        @apply border-sky-500 border-transparent ring-lime-500;
+      }
+    }
+  }
+
+  label {
+    @apply text-sm font-semibold mb-1 block text-slate-200
+  }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+textarea {
+  min-height: 80px;
+  max-height: 240px;
+}
+
+/**
+* ANIMATIONS
+*/
+.transition-list {
+  position: relative;
+
+  li {
+    width: 100%;
+    transform-origin: top center;
+  }
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: scale3d(0.9, 0.5, 1);
+}
+
+.list-enter-to,
+.list-leave-from {
+  opacity: 1;
+  transform: scale3d(1, 1, 1);
+}
+
+.list-enter-active {
+  transition: all 0.4s ease-out;
+}
+
+.list-leave-active {
+  transition: all 0.4s ease-in;
+  position: absolute;
+}
+
+.list-move {
+  transition: all 0.4s 0.2s ease-out;
+}
+
+// VIEW FADING TRANSITION
+.viewFade-enter-from {
+  opacity: 0;
+  transform: translateX(-25px);
+}
+
+.viewFade-leave-to {
+  opacity: 0;
+  transform: translateX(25px);
+}
+
+.viewFade-enter-active {
+  transition: all 0.20s ease-out;
+}
+
+.viewFade-leave-active {
+  transition: all 0.20s ease-in;
+}
+
+// MODAL TRANSITION
+.modal-leave-to,
+.modal-enter-from {
+  opacity: 0;
+
+  .modal {
+    transform: translateY(25px);
+  }
+}
+
+.modal-enter-active,
+.modal-enter-active .modal {
+  transition: all 0.20s ease-out;
+}
+
+.modal-leave-active,
+.modal-leave-active .modal {
+  transition: all 0.20s ease-in;
 }

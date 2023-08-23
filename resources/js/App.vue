@@ -1,32 +1,20 @@
 <script setup>
-    import { RouterView } from "vue-router";
-    import { ref, provide } from "vue";
-    import Icons from "./components/Icons.vue";
-    import Nav from "./components/Nav.vue";
+  import { RouterView } from "vue-router"
+  import Icons from "./components/Icons.vue"
+  import Nav from "./components/Nav.vue"
+  import { useStore } from 'vuex'
+
+  const store = useStore()
 </script>
 
 <template>
-    <Icons></Icons>
-    <Nav></Nav>
+  <Icons></Icons>
+  <Nav v-if="store.getters.authenticated"></Nav>
+  <div id="content" class="max-w-screen-xl mx-auto w-full p-5 pt-8 sm:p-10 sm:pt-16">
     <RouterView v-slot="{ Component }">
-        <transition name="viewFade" mode="out-in">
-            <component :is="Component"></component>
-        </transition>
+      <transition name="viewFade" mode="out-in">
+        <component :is="Component"></component>
+      </transition>
     </RouterView>
+  </div>
 </template>
-
-<style lang="scss">
-    .viewFade-enter-from,
-    .viewFade-leave-to {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    .viewFade-enter-active {
-        transition: all 0.4s ease-out;
-    }
-
-    .viewFade-leave-active {
-        transition: all 0.4s ease-in;
-    }
-</style>
