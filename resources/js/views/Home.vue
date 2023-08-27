@@ -12,6 +12,7 @@
   window.axios.get('/api/home')
     .then(response => {
       if (response.data) {
+        console.log(response);
         store.commit('updateWishlists', Object.values(response.data.user_wishlists))
         store.commit('updateFriends', response.data.friends)
       }
@@ -27,7 +28,6 @@
 
   const handleDeletedWishlist = (id) => {
     store.commit('deleteWishlist', id)
-    // wishlists.value = wishlists.value.filter(wishlist => wishlist.id != id)
   }
 </script>
 

@@ -19,10 +19,10 @@ Route::get('/{any}', [App\Http\Controllers\AppController::class, 'index'])
   ->where('any', '.*')
   ->name('app');
 
-Route::get('/users', function () {
-  $user = User::factory()->create();
-});
+// Route::get('/users', function () {
+//   $user = User::factory()->create();
+// });
 
-Route::get('/wishlists', function () {
-  $wishlist = Wishlist::factory(10)->create();
-});
+// Route::get('/wishlists', function () {
+//   $wishlist = Wishlist::factory(10)->create();
+// });

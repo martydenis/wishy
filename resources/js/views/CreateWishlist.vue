@@ -30,7 +30,6 @@
 
     window.axios.get('/api/wishlists/' + props.id)
       .then(response => {
-        console.log(response.data);
         fields.value = response.data
         friendsSharedWith.value = arrayOfObjectsToMap(response.data.friends_shared_with)
       })
