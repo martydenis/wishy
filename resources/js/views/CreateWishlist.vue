@@ -139,12 +139,12 @@
 
 <template>
   <div class="max-w-xl xl:max-w-screen-lg mx-auto max-md:mb-20">
-    <h1 class="md:mb-12">{{ id ? 'Manage your wishlist' : 'Create a new wishlist'}}</h1>
+    <h1 class="mb-6 md:mb-12 max-sm:text-3xl">{{ id ? 'Manage your wishlist' : 'Create a new wishlist'}}</h1>
 
     <form @submit.prevent="submit">
       <div class="flex max-xl:flex-col gap-8 xl:gap-14">
         <div class="rounded-2xl p-6 lg:p-8 bg-slate-900 ring-1 ring-inset ring-white/10 xl:w-96 xl:self-start">
-          <h2 class="text-2xl font-bold mb-4 text-slate-200">What's your list about ?</h2>
+          <h2 class="text-xl md:text-2xl font-bold mb-4 text-slate-200">What's your list about&nbsp;?</h2>
           <label for="name" class="mt-4" :class="{'text-rose-600': 'name' in errors}">Name</label>
           <input type="text" id="name"
             v-model="fields.name"
@@ -201,7 +201,7 @@
               @delete-wish="deleteWish" />
           </transition-group>
 
-          <p v-else>This wishlist is empty at this moment.<br>Click on the button up here to make a wish.</p>
+          <p v-else class="mt-4">This wishlist is empty at this moment.<br>Click on the button up here to make a wish.</p>
         </div>
       </div>
     </form>
