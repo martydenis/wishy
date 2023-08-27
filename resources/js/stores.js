@@ -48,6 +48,9 @@ const store = createStore({
       state.friends = {}
       state.isWishCreationModalOpen = false
     },
+    deleteWishlist (state, id) {
+      state.wishlists = state.wishlists.filter(wishlist => wishlist.id != id)
+    },
     updateWishlists (state, wishlists) {
       state.wishlists = wishlists
     },

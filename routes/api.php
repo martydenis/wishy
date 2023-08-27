@@ -37,6 +37,7 @@ Route::middleware('auth:sanctum')->get('/friends', [UserController::class, 'getF
 // Wishlists
 Route::middleware('auth:sanctum')->post('/wishlists/create', [WishlistController::class, 'store']);
 Route::middleware('auth:sanctum')->post('/wishlists/{wishlist}/edit', [WishlistController::class, 'update']);
+Route::middleware('auth:sanctum')->delete('/wishlists/{wishlist}', [WishlistController::class, 'destroy']);
 // Route::middleware('auth:sanctum')->post('/wishlists/{wishlist}/toggle-privacy', [WishlistController::class, 'togglePrivacy']);
 // Route::middleware('auth:sanctum')->get('/home', [AppController::class, 'getInitialData']);
 

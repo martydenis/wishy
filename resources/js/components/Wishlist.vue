@@ -37,7 +37,7 @@
         }
 
         emit('wishlistDeleted', props.id)
-        store.commit('removeWishlist', props.id)
+        toggleDeleteWishlistModal()
       }).catch(result => {
         disabled.value = false;
       });
@@ -83,14 +83,3 @@
     <span class="progress-bar absolute left-0 bottom-0 h-[3px] bg-sky-500 " :style="{'width': progressWidth}"></span>
   </li>
 </template>
-
-<style lang="scss">
-  @tailwind components;
-  @layer components {
-    .wishlist {
-      &.disabled {
-        @apply bg-slate-200 border-slate-300 pointer-events-none;
-      }
-    }
-  }
-</style>

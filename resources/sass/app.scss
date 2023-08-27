@@ -66,6 +66,12 @@ input {
     // }
   }
 
+  .wishlist {
+    &.disabled {
+      @apply bg-slate-900 pointer-events-none;
+    }
+  }
+
   input, select, textarea {
     outline: none;
     @apply bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 px-3 py-1 h-10 sm:h-12 rounded-md block w-full duration-300 text-[16px];

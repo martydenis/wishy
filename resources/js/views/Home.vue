@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, computed } from 'vue'
+  import { computed } from 'vue'
   import { useRouter, RouterLink } from 'vue-router'
   import { useStore } from 'vuex'
   import Wishlist from '../components/Wishlist.vue'
@@ -26,7 +26,8 @@
     });
 
   const handleDeletedWishlist = (id) => {
-    wishlists.value = wishlists.value.filter(wishlist => wishlist.id != id)
+    store.commit('deleteWishlist', id)
+    // wishlists.value = wishlists.value.filter(wishlist => wishlist.id != id)
   }
 </script>
 

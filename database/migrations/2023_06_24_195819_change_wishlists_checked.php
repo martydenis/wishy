@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('wishlists', function (Blueprint $table) {
-            $table->boolean('private')->default(false);
             $table->longText('description')->nullable()->change();
         });
     }
@@ -23,7 +22,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('wishlists', function (Blueprint $table) {
-            $table->boolean('private')->dropColumn();
             $table->longText('description')->change();
         });
     }
