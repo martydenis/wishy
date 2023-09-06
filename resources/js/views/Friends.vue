@@ -20,8 +20,7 @@
       console.log(error)
 
       if (typeof error.response != 'undefined' && error.response.status == 401) {
-        store.commit('logout')
-        router.push({name: "Login"});
+        store.dispatch('logout')
       }
     });
 
@@ -171,7 +170,7 @@
 
     <Modal :visible="isFriendInviteModalOpen" @user-input="modalUserInput" :button-disabled="!friendRequest.inputValue">
       <template #header>Invite a friend</template>
-  
+
       <form @submit.prevent="submitFriendRequest" method="post" class="mt-4">
         <label for="friend-request" class="block mb-1">Write down your friend's email address</label>
         <input type="text" id="friend-request"
@@ -179,7 +178,7 @@
           :class="{'error': 'success' in friendRequest && !friendRequest.success, 'success': friendRequest.success}">
         <p v-if="friendRequest.message" class="text-sm mt-2" :class="{'text-rose-400' : !friendRequest.success, 'text-lime-400' : friendRequest.success}">{{ friendRequest.message }}</p>
       </form>
-  
+
       <template #yes-button><svg><use href="#send"/></svg>Send invitation</template>
     </Modal>
   </div>

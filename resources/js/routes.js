@@ -15,51 +15,51 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    meta: {requiresAuth: true}
+    meta: { requiresAuth: true }
   },
   {
     path: '/discover',
     name: 'Discover',
     component: Discover,
-    meta: {requiresAuth: true}
+    meta: { requiresAuth: true }
   },
   {
     path: '/friends',
     name: 'Friends',
     component: Friends,
-    meta: {requiresAuth: true}
+    meta: { requiresAuth: true }
   },
   {
     path: '/wishlists/create',
     name: 'CreateWishlist',
     component: CreateWishlist,
-    meta: {requiresAuth: true}
+    meta: { requiresAuth: true }
   },
   {
     path: '/wishlists/:id/manage',
     name: 'ManageWishlist',
     component: CreateWishlist,
     props: true,
-    meta: {requiresAuth: true}
+    meta: { requiresAuth: true }
   },
   {
     path: '/wishlists/:id',
     name: 'Wishlist',
     component: Wishlist,
     props: true,
-    meta: {requiresAuth: true}
+    meta: { requiresAuth: true }
   },
   {
     path: '/account',
     name: 'Account',
     component: Account,
-    meta: {requiresAuth: true}
+    meta: { requiresAuth: true }
   },
   {
     path: '/login',
     name: 'Login',
     component: Login,
-    meta: {requiresGuest: true}
+    meta: { requiresGuest: true }
   },
   {
     path: '/register',

@@ -1,5 +1,4 @@
 <script setup>
-  import { watch } from 'vue'
   const emit = defineEmits(['userInput'])
   const props = defineProps(['visible', 'buttonDisabled'])
 

@@ -14,9 +14,8 @@
 
   const logout = () => {
     window.axios.post('/api/logout')
-      .then(response => {
-        store.commit('logout')
-        router.push({name: "Login"})
+      .then(() => {
+        store.dispatch('logout')
       })
   }
 
@@ -26,9 +25,8 @@
     }
 
     window.axios.delete('/api/delete-account')
-      .then(response => {
-        store.commit('logout')
-        router.push({name: "Home"})
+      .then(() => {
+        store.dispatch('logout')
       })
   }
 </script>

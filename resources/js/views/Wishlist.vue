@@ -18,8 +18,8 @@
   const userId = store.getters.user.id
   const progressWidth = computed(() => {
     return (!wishlist.value.wishes || wishlist.value.wishes.length == 0)
-      ? '0%'
-      : (wishlist.value.wishes_checked_count * 100 / wishlist.value.wishes.length) + '%'
+      ? '0'
+      : (wishlist.value.wishes_checked_count * 100 / wishlist.value.wishes.length)
   })
 
   window.axios.get('/api/wishlists/' + props.id)
@@ -36,8 +36,7 @@
 
       // Unauthorized, needs to login
       if (error.response.status == 401) {
-        store.commit('logout')
-        router.push({name: "Login"});
+        store.dispatch('logout')
       }
 
       // Wishlist doesn't exist or user is not authorized to display a private wishlist
@@ -121,38 +120,40 @@
   <div v-if="wishlist" class="max-w-screen-md mx-auto max-md:mb-20">
     <h1>{{ wishlist.name ? wishlist.name : '...' }}</h1>
 
-    <div class="mt-4">
-      <p v-if="wishlist.user" class="text-xl font-bold text-slate-200 flex flex-wrap gap-y-2 gap-x-5">
-        {{ wishlist.user.name }}
-        <span class="text-slate-400 font-normal text-sm flex gap-1.5 items-center">
-          <svg class="text-[0.75em]"><use href="#clock" /></svg>
-          {{ wishlist.created_at_formatted }}
-        </span>  
-      </p>
-      <p v-if="wishlist.description" class="mt-4">{{ wishlist.description }}</p>
-    </div>
-
-    <div class="flex flex-wrap items-center mt-4 gap-y-3 gap-x-4">
-        <Button v-if="allowEditing" :route="{name: 'ManageWishlist', id: wishlist.id}" icon="edit" text="Manage"></Button>
-        <Button v-if="allowEditing" @click.prevent="$eventBus.emit('showWishCreationModal')" icon="add" color="sky" text="Make a wish"></Button>
-    </div>
-
-    <p class="mt-6 tags flex justify-center items-center relative h-px bg-slate-700">
-      <span v-if="wishlist.wishes && wishlist.wishes.length"
-        class="mx-auto mb-1 bg-slate-950 text-sm relative z-10 px-1"
-        :class="{
-          'text-slate-400': (wishlist.wishes_checked_count < wishlist.wishes.length),
-          'text-sky-500': (wishlist.wishes_checked_count == wishlist.wishes.length)
-        }"
-      >
-        {{ wishlist.wishes_checked_count }} / {{ wishlist.wishes.length }} {{ wishlist.wishes.length > 1 ? 'wishes checked' : 'wish checked' }}
+    <p v-if="wishlist.user" class="text-xl font-bold text-slate-200 flex items-center flex-wrap gap-y-2 gap-x-5">
+      {{ wishlist.user.name }}
+      <span class="text-slate-400 font-normal text-sm flex gap-1.5 items-center">
+        <svg class="text-[0.75em]"><use href="#clock" /></svg>
+        {{ wishlist.created_at_formatted }}
       </span>
-      <span class="absolute left-0 bottom-0 h-[3px] bg-sky-500 duration-500" :style="{'width': progressWidth}"></span>
+
+      <Button v-if="allowEditing" :route="{name: 'ManageWishlist', id: wishlist.id}" icon="edit" text="Manage" class="ml-auto"></Button>
+    </p>
+    <p v-if="wishlist.description" class="mt-4">{{ wishlist.description }}</p>
+
+
+    <h2 class="text-2xl font-bold flex mt-10 gap-y-2 gap-x-8 flex-wrap justify-between items-center text-slate-200">
+      Wishes in this list
+
+      <Button v-if="allowEditing" @click.prevent="$eventBus.emit('showWishCreationModal')" icon="add" color="sky" text="Make a wish" class="ml-auto"></Button>
+    </h2>
+
+    <p class="mt-6 flex justify-center items-center h-px relative bg-slate-700">
+        <span v-if="wishlist.wishes && wishlist.wishes.length"
+          class="bg-slate-950 relative z-10 text-sm px-1 leading-none duration-500 -mt-1"
+          :class="{
+            'text-slate-400': (wishlist.wishes_checked_count < wishlist.wishes.length / 2),
+            'text-sky-500': (wishlist.wishes_checked_count >= wishlist.wishes.length / 2)
+          }"
+        >
+          {{ wishlist.wishes_checked_count }} / {{ wishlist.wishes.length }} {{ wishlist.wishes.length > 1 ? 'wishes checked' : 'wish checked' }}
+        </span>
+      <span class="absolute left-0 bottom-0 h-[3px] bg-sky-500 duration-500" :style="{'width': progressWidth + '%'}"></span>
     </p>
 
-    <transition name="switch" mode="out-in" class="mt-10">
+    <transition name="switch" mode="out-in" class="mt-4">
       <div v-if="wishlist.wishes && wishlist.wishes.length">
-        <transition-group appear name="list" tag="ul" class="transition-list">
+        <transition-group appear name="list" tag="ol" class="transition-list -mx-3">
           <Wish
             v-for="(wish, index) in wishlist.wishes"
             :key="wish.id"

@@ -45,26 +45,23 @@
 
 <style lang="scss">
   .btn-sm {
-    --btn-padding: 0.25em;
     padding: var(--btn-padding);
     @apply min-w-[2rem] h-8 text-sm;
   }
 
   .btn-md {
-    --btn-padding: 0.375em;
     padding: var(--btn-padding);
     @apply min-w-[2.5rem] h-10 text-md;
   }
 
   .btn-lg {
-    --btn-padding: 0.5em;
     padding: var(--btn-padding);
     @apply min-w-[2.75rem] h-11 text-lg;
   }
 
   .btn-has-text {
-    padding-left: calc(var(--btn-padding) * 2);
-    padding-right: calc(var(--btn-padding) * 2);
+    padding-left: 1em;
+    padding-right: 1em;
   }
 
   .btn-default {

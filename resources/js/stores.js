@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import {arrayOfObjectsToMap} from './tools.js'
+import { arrayOfObjectsToMap } from './tools.js'
 
 const store = createStore({
   state () {
@@ -36,20 +36,20 @@ const store = createStore({
     }
   },
   mutations: {
-    login (state, user) {
-      state.user = user
-      state.authenticated = true
-      state.isWishCreationModalOpen = false
-    },
-    logout (state) {
-      state.user = {}
-      state.authenticated = false
-      state.wishlists = []
-      state.friends = {}
-      state.isWishCreationModalOpen = false
-    },
-    deleteWishlist (state, id) {
-      state.wishlists = state.wishlists.filter(wishlist => wishlist.id != id)
+    // login (state, user) {
+    //   state.user = user
+    //   state.authenticated = true
+    //   state.isWishCreationModalOpen = false
+    // },
+    // logout (state) {
+    //   state.user = {}
+    //   state.authenticated = false
+    //   state.wishlists = []
+    //   state.friends = {}
+    //   state.isWishCreationModalOpen = false
+    // },
+    deleteWishlist (state, key) {
+      state.wishlists.splice(key, 1)
     },
     updateWishlists (state, wishlists) {
       state.wishlists = wishlists
@@ -61,6 +61,14 @@ const store = createStore({
       }
     }
   },
+  actions: {
+    login (context) {
+      window.location.href = '/'
+    },
+    logout (context) {
+      window.location.href = '/login'
+    },
+  }
 })
 
 export default store;

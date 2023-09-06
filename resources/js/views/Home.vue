@@ -1,18 +1,18 @@
 <script setup>
-  import { computed } from 'vue'
-  import { useRouter, RouterLink } from 'vue-router'
+  import { ref, computed } from 'vue'
+  import { RouterLink } from 'vue-router'
   import { useStore } from 'vuex'
   import Wishlist from '../components/Wishlist.vue'
+  import Modal from '../components/Modal.vue'
 
   const store = useStore()
-  const router = useRouter()
   const username = store.getters.user.name
   const wishlists = computed(() => store.getters.wishlists)
+  const wishlistIdToDelete = ref(null)
 
   window.axios.get('/api/home')
     .then(response => {
       if (response.data) {
-        console.log(response);
         store.commit('updateWishlists', Object.values(response.data.user_wishlists))
         store.commit('updateFriends', response.data.friends)
       }
@@ -21,13 +21,38 @@
       console.log(error)
 
       if (typeof error.response != 'undefined' && error.response.status == 401) {
-        store.commit('logout')
-        router.push({name: "Login"});
+        store.dispatch('logout')
       }
     });
 
-  const handleDeletedWishlist = (id) => {
-    store.commit('deleteWishlist', id)
+  const openDeleteWishlistModal = (key) => {
+    wishlistIdToDelete.value = key
+  }
+
+  const closeDeleteWishlistModal = () => {
+    wishlistIdToDelete.value = null
+  }
+
+  const deleteWishlist = (input) => {
+    const wishlist = wishlists.value[wishlistIdToDelete.value]
+
+    if (input == 0 || !wishlist.id) {
+      return closeDeleteWishlistModal();
+    }
+
+    wishlist.disabled = true;
+
+    window.axios.delete('/api/wishlists/' + wishlist.id)
+      .then(result => {
+        if (result.data == 0) {
+          return;
+        }
+
+        store.commit('deleteWishlist', wishlistIdToDelete.value)
+        closeDeleteWishlistModal()
+      }).catch(result => {
+        wishlist.disabled = false;
+      });
   }
 </script>
 
@@ -51,17 +76,24 @@
       class="transition-list"
     >
       <Wishlist
-        v-for="wishlist in wishlists"
+        v-for="(wishlist, index) in wishlists"
         :key="wishlist.id"
         :id="wishlist.id"
         :name="wishlist.name"
         :description="wishlist.description"
         :privacy="wishlist.privacy"
+        :disabled="wishlist.disabled"
         :created-at="wishlist.created_at_formatted"
         :wishes-total-count="wishlist.wishes_total_count"
         :wishes-checked-count="wishlist.wishes_checked_count"
         :allow-editing="true"
-        @wishlist-deleted="handleDeletedWishlist" />
+        @delete-wishlist="openDeleteWishlistModal(index)" />
     </transition-group>
+
+    <Modal :visible="wishlistIdToDelete != null" @user-input="deleteWishlist">
+      <template #header>Are you sure you want to delete this wishlist&nbsp;?</template>
+      <template #default><p>All its wishes will be lost</p></template>
+      <template #yes-button>Yes, delete it</template>
+    </Modal>
   </div>
 </template>
