@@ -38,7 +38,7 @@
   <li :id="'wishlist_wish_' + position"
     @click="emitCheckWish"
     class="wish group mb-2 px-3 w-auto py-2 sm:px-4 sm:py-3 flex gap-4 duration-200 rounded-lg"
-    :class="{ disabled: disabled, checked: checked, error: errors, 'cursor-pointer' : allowChecking }"
+    :class="{ 'wish-ok': !errors && !checked, disabled: disabled, checked: checked, error: errors, 'cursor-pointer' : allowChecking }"
     >
     <span
       class="wish-bullet rounded-md font-bold duration-200 w-8 h-8 shrink-0 flex justify-center items-center not-italic text-sm self-start"
@@ -77,12 +77,12 @@
 
 <style lang="scss">
 @media (hover: hover) {
-  .wish-name {
-    @apply group-hover:text-sky-500
+  .wish-ok:hover .wish-name {
+    @apply text-sky-500
   }
 
-  .wish-bullet {
-    @apply group-hover:bg-slate-900 group-hover:text-sky-600;
+  .wish-ok:hover .wish-bullet {
+    @apply bg-slate-900 text-sky-600;
   }
 }
 </style>
