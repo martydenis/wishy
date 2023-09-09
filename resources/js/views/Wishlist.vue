@@ -134,7 +134,7 @@
     </p>
     <p v-if="wishlist.description" class="mt-4 text-lg">{{ wishlist.description }}</p>
 
-    <p class="mt-10 flex justify-center items-center h-px relative bg-slate-700">
+    <p class="mt-16 flex justify-center items-center h-px relative bg-slate-700">
       <span v-if="wishlist.wishes && wishlist.wishes.length"
         class="bg-slate-950 relative z-10 text-sm px-1 leading-none duration-500 -mt-1"
         :class="{
