@@ -9,8 +9,8 @@
     const button = triggerer.value;
     const rect = button.getBoundingClientRect();
 
-    dropdownPosition.x = window.innerWidth - rect.left - button.offsetWidth
-    dropdownPosition.y = rect.top  + window.scrollY
+    dropdownPosition.x = window.innerWidth - rect.left + 4
+    dropdownPosition.y = rect.top + window.scrollY
 
     isDropdownOpen.value = true
   }
@@ -32,7 +32,7 @@
     <Transition name="switch">
       <ul v-if="isDropdownOpen" 
         @click="closeDropdown"
-        class="flex flex-col absolute z-30 rounded-lg bg-slate-800 border border-slate-700 py-3 w-36 shadow-md"
+        class="flex flex-col absolute z-30 rounded-xl bg-slate-800 border border-slate-700 py-3 w-36 shadow-md"
         :style="{ top: dropdownPosition.y + 'px', right: dropdownPosition.x + 'px' }">
         <slot></slot>
       </ul>

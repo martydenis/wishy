@@ -17,7 +17,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" media="screen">
     </head>
-    <body id="app" class="bg-slate-950 text-slate-400 subpixel-antialiased overflow-y-scroll flex items-stretch font-medium">
+    <body id="app" class="bg-slate-950 text-slate-400 subpixel-antialiased overflow-x-hidden overflow-y-scroll flex items-stretch font-medium">
     </body>
 
     <script>

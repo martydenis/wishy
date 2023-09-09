@@ -18,14 +18,14 @@
 
 html {
   height: 100%;
-  font-size: 16px;
+  font-size: clamp(14px, 0.5vw + 0.75rem, 16px);
   color-scheme: dark;
 }
 
 body {
   min-height: 100%;
   margin: 0;
-  font-size: clamp(0.875rem, 0.5vw + 0.75rem, 1.125rem);
+  // font-size: ;
   line-height: 1.6;
   font-family: 'Manrope', sans-serif;
 }
@@ -46,7 +46,7 @@ input {
 
 @layer base {
   h1 {
-    @apply text-4xl/tight md:text-5xl/tight font-extrabold mb-[0.4em] text-slate-200;
+    @apply text-5xl/tight font-extrabold mb-[0.4em] text-slate-200;
   }
 }
 
@@ -74,7 +74,7 @@ input {
 
   input, select, textarea {
     outline: none;
-    @apply bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 px-3 py-1 h-10 sm:h-12 rounded-md block w-full duration-300 text-[16px];
+    @apply bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 px-3 py-1 h-11 rounded-md block w-full duration-300 text-[16px];
     transition-property: color, border-color, box-shadow, background;
 
     &:focus {

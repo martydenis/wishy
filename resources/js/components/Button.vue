@@ -34,12 +34,12 @@
 
 <template>
   <button v-if="!route" :type="type" class="rounded-full flex gap-2 items-center justify-center ease-out duration-300" :class="[btnColor, btnSize, btnPaddingX, btnFullWidth]">
-    <svg v-if="icon" :class="{'text-[0.925em]': text, 'text-[1em]': !text}"><use :href="'#' + icon"/></svg>
-    <span v-if="text">{{ text }}</span>
+    <svg v-if="icon" class="shrink-0" :class="{'text-[0.925em]': text, 'text-[1em]': !text}"><use :href="'#' + icon"/></svg>
+    <span v-if="text" class="leading-tight whitespace-nowrap">{{ text }}</span>
   </button>
   <RouterLink v-else :to="route" class="rounded-full flex gap-2 items-center justify-center ease-out duration-300" :class="[btnColor, btnSize, btnPaddingX, btnFullWidth]">
-    <svg v-if="icon" :class="{'text-[0.925em]': text, 'text-[1em]': !text}"><use :href="'#' + icon"/></svg>
-    <span v-if="text">{{ text }}</span>
+    <svg v-if="icon" class="shrink-0" :class="{'text-[0.925em]': text, 'text-[1em]': !text}"><use :href="'#' + icon"/></svg>
+    <span v-if="text" class="leading-tight whitespace-nowrap">{{ text }}</span>
   </RouterLink>
 </template>
 

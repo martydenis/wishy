@@ -37,15 +37,6 @@
 
     <transition name="switch" mode="out-in" class="mt-8">
       <div v-if="wishlists && wishlists.length">
-        <!-- <div class="mb-6 flex flex-wrap justify-between gap-4 items-center"> -->
-          <!-- <p>{{ wishlists.length }} wishlists</p> -->
-
-          <!-- <div class="relative">
-            <svg class="text-slate-300 absolute left-3 top-0 h-full"><use href="#search"></use></svg>
-            <input type="search" name="wishlist-filter" v-model="wishlistFilter" id="wishlist-filter" placeholder="Search for a wishlist" class="px-3 py-2 pl-12 rounded-md border-solid border border-slate-300">
-          </div> -->
-        <!-- </div> -->
-
         <transition-group
           appear
           name="list"

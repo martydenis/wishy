@@ -1,11 +1,9 @@
 <script setup>
   import { ref } from 'vue'
   import { useStore } from 'vuex'
-  import { useRouter } from 'vue-router'
   import Button from '../components/Button.vue'
 
   const store = useStore()
-  const router = useRouter()
   const fields = ref({})
   const errors = ref({})
 
@@ -25,7 +23,7 @@
 </script>
 
 <template>
-  <div class="h-full flex flex-col justify-center items-center w-full max-w-md mx-auto">
+  <div class="h-full flex flex-col justify-center items-center w-full max-w-sm mx-auto">
     <img src="../../img/wishr.svg" alt="Wishr" width="72">
     <h1 class="text-center text-xl mt-4">Wishr</h1>
     <form @submit.prevent="submit" class="mt-8 w-full rounded-2xl p-5 sm:p-8 bg-slate-900 ring-1 ring-inset ring-white/10">
@@ -48,6 +46,6 @@
       <button type="submit" class="mt-8 block text-white bg-sky-500 w-full rounded-full h-[2.75em]">Login</button>
     </form>
     <p class="text-center mt-4 mb-2 text-slate-400">Don't have an account ?</p>
-    <Button :route="{name: 'Register'}" text="Register"></Button>
+    <RouterLink :to="{name: 'Register'}" class="inline-block p-1 ease-out duration-300 text-slate-200 underline underline-offset-4">Register</RouterLink>
   </div>
 </template>

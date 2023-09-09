@@ -120,22 +120,25 @@
   <div v-if="wishlist" class="max-w-screen-md mx-auto max-md:mb-20">
     <h1>{{ wishlist.name ? wishlist.name : '...' }}</h1>
 
-    <p v-if="wishlist.user" class="text-xl font-bold text-slate-200 flex items-center flex-wrap gap-y-2 gap-x-5">
-      {{ wishlist.user.name }}
-      <span class="text-slate-400 font-normal text-sm flex gap-1.5 items-center">
-        <svg class="text-[0.75em]"><use href="#clock" /></svg>
-        {{ wishlist.created_at_formatted }}
+    <p v-if="wishlist.user" class="text-xl font-bold text-slate-200 flex items-center gap-y-2 gap-x-5">
+      <span class="flex items-baseline flex-wrap gap-x-5">
+        {{ wishlist.user.name }}
+
+        <span class="text-slate-400 font-normal text-sm flex gap-1.5 items-center">
+          <svg class="text-[0.75em]"><use href="#clock" /></svg>
+          {{ wishlist.created_at_formatted }}
+        </span>
       </span>
 
       <Button v-if="allowEditing" :route="{name: 'ManageWishlist', id: wishlist.id}" icon="edit" text="Manage" class="ml-auto"></Button>
     </p>
-    <p v-if="wishlist.description" class="mt-4">{{ wishlist.description }}</p>
+    <p v-if="wishlist.description" class="mt-4 text-lg">{{ wishlist.description }}</p>
 
 
-    <h2 class="text-2xl font-bold flex mt-10 gap-y-2 gap-x-8 flex-wrap justify-between items-center text-slate-200">
+    <h2 class="text-2xl font-bold flex mt-10 gap-4 justify-between items-end text-slate-200">
       Wishes in this list
 
-      <Button v-if="allowEditing" @click.prevent="$eventBus.emit('showWishCreationModal')" icon="add" color="sky" text="Make a wish" class="ml-auto"></Button>
+      <Button v-if="allowEditing" @click.prevent="$eventBus.emit('showWishCreationModal')" icon="add" color="sky" text="Make a wish" class="ml-auto shrink-0"></Button>
     </h2>
 
     <p class="mt-6 flex justify-center items-center h-px relative bg-slate-700">

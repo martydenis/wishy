@@ -223,7 +223,7 @@
           }">
           <i
             :toto="id"
-            class="text-sm h-9 w-9 rounded-full flex justify-center items-center shrink-0 duration-300"
+            class="text-sm h-9 w-9 rounded-full flex justify-center items-center self-start shrink-0 duration-300"
             :class="{
               'bg-sky-600 text-slate-200': friendsSharedWith.has(id),
               'bg-slate-800 text-slate-300': !friendsSharedWith.has(id)
@@ -233,7 +233,7 @@
               <svg v-else><use href="#user" /></svg>
             </transition>
           </i>
-          <span class="flex-grow overflow-hidden text-ellipsis whitespace-nowrap font-bold">{{ friend.name }}</span>
+          <span class="flex-grow overflow-hidden w-full leading-tight font-bold">{{ friend.name }}</span>
         </li>
       </ul>
       <p v-else>Invite some friends on Wishr first, you will then be able to share this list with them</p>

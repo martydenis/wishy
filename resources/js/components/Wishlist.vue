@@ -13,21 +13,26 @@
 </script>
 
 <template>
-  <li :id="'wishlist_' + id" :class="'wishlist group relative mb-4 px-4 py-3 md:px-6 md:py-5 ring-1 ring-slate-100/20 bg-slate-800 hover:bg-[#313c4e] rounded-[0.5em] overflow-hidden ease-out duration-300 cursor-pointer flex gap-4 items-center justify-between' + (disabled ? ' disabled' : '')">
+  <li :id="'wishlist_' + id" :class="'wishlist group relative mb-4 px-4 py-3 md:px-6 md:py-5 ring-1 ring-slate-100/20 bg-slate-800 hover:bg-[#313c4e] rounded-[0.5em] overflow-hidden ease-out duration-300 cursor-pointer flex gap-1 justify-between' + (disabled ? ' disabled' : '')">
     <RouterLink :to="{name: 'Wishlist', params: {id: id}}" class="absolute w-full h-full top-0 left-0"></RouterLink>
     <div>
       <p class="text-slate-200 text-lg"><strong>{{ name }}</strong></p>
       <p v-if="user" class="text-sky-500 text-sm">{{ user }}</p>
 
       <p class="flex flex-wrap gap-x-3 sm:gap-x-6 text-slate-400 text-xs sm:text-sm mt-2">
-        <span v-if="wishesTotalCount > 0">{{ wishesCheckedCount }} / {{ wishesTotalCount }} {{ wishesTotalCount > 1 ? 'wishes' : 'wish' }}</span>
-        <span v-else>No wishes</span>
+
+        <span class="flex gap-1.5 items-center">
+          <svg class="text-[0.75em]"><use href="#check" /></svg>
+
+          <span v-if="wishesTotalCount > 0">{{ wishesCheckedCount }} / {{ wishesTotalCount }}</span>
+          <span v-else>0 wish</span>
+        </span>
 
         <span v-if="createdAt" class="flex gap-1.5 items-center"><svg class="text-[0.75em]"><use href="#clock" /></svg>{{ createdAt }}</span>
 
         <span v-if="!user">
           <span v-if="privacy == 0" class="flex gap-1.5 items-center text-sky-500"><svg class="text-[0.75em]"><use href="#lock" /></svg> Private</span>
-          <span v-else-if="privacy == 1" class="flex gap-1.5 items-center"><svg class="text-[0.75em]"><use href="#link" /></svg> Shared with friends</span>
+          <span v-else-if="privacy == 1" class="flex gap-1.5 items-center"><svg class="text-[0.75em]"><use href="#link" /></svg> Selected friends</span>
           <span v-else class="flex gap-1.5 items-center"><svg class="text-[0.75em]"><use href="#users" /></svg> All friends</span>
         </span>
       </p>
