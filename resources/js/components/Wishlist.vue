@@ -13,40 +13,39 @@
 </script>
 
 <template>
-  <li :id="'wishlist_' + id" :class="'wishlist group relative mb-4 px-4 py-3 md:px-6 md:py-5 ring-1 ring-slate-100/20 bg-slate-800 hover:bg-[#313c4e] rounded-[0.5em] overflow-hidden ease-out duration-300 cursor-pointer flex gap-1 justify-between' + (disabled ? ' disabled' : '')">
+  <li :id="'wishlist_' + id" :class="'wishlist group relative mb-4 px-5 py-4 ring-1 ring-slate-100/20 bg-slate-800 hover:bg-[#313c4e] rounded-[0.5em] overflow-hidden ease-out duration-300 cursor-pointer' + (disabled ? ' disabled' : '')">
     <RouterLink :to="{name: 'Wishlist', params: {id: id}}" class="absolute w-full h-full top-0 left-0"></RouterLink>
-    <div>
-      <p class="text-slate-200 text-lg"><strong>{{ name }}</strong></p>
-      <p v-if="user" class="text-sky-500 text-sm">{{ user }}</p>
+    <p v-if="user" class="text-sky-500 text-sm">{{ user }}</p>
+    <div class="flex gap-2 justify-between items-start">
+      <p class="text-slate-200 text-lg leading-tight self-center"><strong>{{ name }}</strong></p>
 
-      <p class="flex flex-wrap gap-x-3 sm:gap-x-6 text-slate-400 text-xs sm:text-sm mt-2">
-
-        <span class="flex gap-1.5 items-center">
-          <svg class="text-[0.75em]"><use href="#check" /></svg>
-
-          <span v-if="wishesTotalCount > 0">{{ wishesCheckedCount }} / {{ wishesTotalCount }}</span>
-          <span v-else>0 wish</span>
-        </span>
-
-        <span v-if="createdAt" class="flex gap-1.5 items-center"><svg class="text-[0.75em]"><use href="#clock" /></svg>{{ createdAt }}</span>
-
-        <span v-if="!user">
-          <span v-if="privacy == 0" class="flex gap-1.5 items-center text-sky-500"><svg class="text-[0.75em]"><use href="#lock" /></svg> Private</span>
-          <span v-else-if="privacy == 1" class="flex gap-1.5 items-center"><svg class="text-[0.75em]"><use href="#link" /></svg> Selected friends</span>
-          <span v-else class="flex gap-1.5 items-center"><svg class="text-[0.75em]"><use href="#users" /></svg> All friends</span>
-        </span>
-      </p>
+      <div v-if="allowEditing && isAboveTablet" class="opacity-0 group-hover:opacity-100 transition-opacity flex gap-2 relative z-10">
+        <Button :route="{name: 'ManageWishlist', params: {id: id}}" icon="edit" size="lg"></Button>
+        <Button @click.stop="$emit('deleteWishlist', id)" icon="delete" color="rose" size="lg"></Button>
+      </div>
+      <Dropdown v-if="allowEditing && !isAboveTablet">
+        <DropdownItem :route="{name: 'ManageWishlist', params: {id: id}}" icon="edit" text="Edit"></DropdownItem>
+        <DropdownItem @click="$emit('deleteWishlist', id)" icon="delete" text="Delete"></DropdownItem>
+      </Dropdown>
     </div>
 
-    <div v-if="allowEditing && isAboveTablet" class="opacity-0 group-hover:opacity-100 transition-opacity flex gap-2 relative z-10">
-      <Button :route="{name: 'ManageWishlist', params: {id: id}}" icon="edit" size="lg"></Button>
-      <Button @click.stop="$emit('deleteWishlist', id)" icon="delete" color="rose" size="lg"></Button>
-    </div>
-    <Dropdown v-if="allowEditing && !isAboveTablet">
-      <DropdownItem :route="{name: 'ManageWishlist', params: {id: id}}" icon="edit" text="Edit"></DropdownItem>
-      <DropdownItem @click="$emit('deleteWishlist', id)" icon="delete" text="Delete"></DropdownItem>
-    </Dropdown>
+    <p class="flex flex-wrap gap-x-3 sm:gap-x-6 text-slate-400 text-xs sm:text-sm mt-1">
+      <span class="flex gap-1.5 items-center">
+        <svg class="text-[0.75em]"><use href="#check" /></svg>
 
-    <span class="progress-bar absolute left-0 bottom-0 h-[3px] bg-sky-500 " :style="{'width': progressWidth}"></span>
+        <span v-if="wishesTotalCount > 0">{{ wishesCheckedCount }} / {{ wishesTotalCount }}</span>
+        <span v-else>0 wish</span>
+      </span>
+
+      <span v-if="createdAt" class="flex gap-1.5 items-center"><svg class="text-[0.75em]"><use href="#clock" /></svg>{{ createdAt }}</span>
+
+      <span v-if="!user">
+        <span v-if="privacy == 0" class="flex gap-1.5 items-center text-sky-500"><svg class="text-[0.75em]"><use href="#lock" /></svg> Private</span>
+        <span v-else-if="privacy == 1" class="flex gap-1.5 items-center"><svg class="text-[0.75em]"><use href="#link" /></svg> Selected friends</span>
+        <span v-else class="flex gap-1.5 items-center"><svg class="text-[0.75em]"><use href="#users" /></svg> All friends</span>
+      </span>
+    </p>
+
+    <span class="progress-bar absolute left-0 bottom-0 h-[0.2rem] bg-sky-500" :style="{'width': progressWidth}"></span>
   </li>
 </template>
