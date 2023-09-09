@@ -12,10 +12,10 @@
       </i>
       <span class="flex-grow overflow-hidden text-ellipsis whitespace-nowrap font-bold">{{ name }}</span>
 
-      <span class="flex">
-        <i v-if="pending" @click="$emit('accept', id)" class="flex opacity-0 group-hover:opacity-100 items-center justify-center rounded-full text-green-500 hover:text-green-400 h-11 w-11 shrink-0 cursor-pointer duration-300"><svg><use href="#check" /></svg></i>
-        <i v-if="pending" @click="$emit('reject', id)" class="flex opacity-0 group-hover:opacity-100 items-center justify-center rounded-full hover:text-rose-500 h-11 w-11 shrink-0 text-slate-400 cursor-pointer duration-300"><svg><use href="#close" /></svg></i>
-        <i v-if="!pending" @click="$emit('delete', id)" class="flex opacity-0 group-hover:opacity-100 items-center justify-center rounded-full hover:text-rose-500 h-11 w-11 shrink-0 text-slate-400 cursor-pointer duration-300"><svg><use href="#close" /></svg></i>
+      <span class="flex lg:opacity-0 lg:group-hover:opacity-100 duration-300">
+        <i v-if="pending" @click="$emit('accept', id)" class="flex items-center justify-center rounded-full text-green-500 hover:text-green-400 h-11 w-11 shrink-0 cursor-pointer"><svg><use href="#check" /></svg></i>
+        <i v-if="pending" @click="$emit('reject', id)" class="flex items-center justify-center rounded-full hover:text-rose-500 h-11 w-11 shrink-0 text-slate-400 cursor-pointer"><svg><use href="#close" /></svg></i>
+        <i v-else @click="$emit('delete', id)" class="flex items-center justify-center rounded-full hover:text-rose-500 h-11 w-11 shrink-0 text-slate-400 cursor-pointer"><svg><use href="#close" /></svg></i>
       </span>
     </li>
 </template>
