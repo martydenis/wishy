@@ -37,7 +37,7 @@
 <template>
   <li :id="'wishlist_wish_' + position"
     @click="emitCheckWish"
-    class="wish group mb-2 w-auto px-2 py-1 sm:px-4 sm:py-3 flex gap-4 duration-200 rounded-xl"
+    class="wish group mb-2 w-auto px-2 py-1 sm:px-4 sm:py-3 flex gap-4 duration-200 rounded-xl active:bg-slate-900"
     :class="{ 'wish-ok': !errors && !checked, disabled: disabled, checked: checked, error: errors, 'cursor-pointer' : allowChecking }"
     >
     <span
@@ -69,8 +69,8 @@
       <Button @click.prevent.stop="emitDeleteWish" icon="delete" color="rose" size="lg"></Button>
     </div>
     <Dropdown v-if="allowDeleting && !isAboveTablet">
-      <DropdownItem @click.prevent="editWish" icon="edit" text="Edit"></DropdownItem>
-      <DropdownItem @click.prevent="emitDeleteWish" icon="delete" text="Delete"></DropdownItem>
+      <DropdownItem @click.prevent.stop="editWish" icon="edit" text="Edit"></DropdownItem>
+      <DropdownItem @click.prevent.stop="emitDeleteWish" icon="delete" text="Delete"></DropdownItem>
     </Dropdown>
   </li>
 </template>
@@ -82,7 +82,7 @@
   }
 
   .wish-ok:hover .wish-bullet {
-    @apply  text-sky-600;
+    @apply text-sky-600;
   }
 }
 </style>
