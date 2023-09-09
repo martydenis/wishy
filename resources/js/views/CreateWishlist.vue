@@ -180,7 +180,7 @@
           <h2 class="text-2xl font-bold flex gap-y-2 gap-x-8 flex-wrap justify-between items-center text-slate-200">
             Wishes in your list
 
-            <Button @click.prevent="$eventBus.emit('showWishCreationModal')" icon="add" text="Make a wish"></Button>
+            <Button @click.prevent="$eventBus.emit('showWishCreationModal')" icon="add" :text="!store.getters.isMobile ? 'Make a wish' : ''"></Button>
           </h2>
 
           <transition-group appear name="list" tag="ol" class="transition-list mt-4" v-if="fields.wishes.length">

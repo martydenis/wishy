@@ -46,7 +46,7 @@ input {
 
 @layer base {
   h1 {
-    @apply text-5xl/tight font-extrabold mb-[0.4em] text-slate-200;
+    @apply text-5xl/[1.1em] font-extrabold mb-[0.4em] text-slate-200;
   }
 }
 
@@ -74,7 +74,7 @@ input {
 
   input, select, textarea {
     outline: none;
-    @apply bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 px-3 py-1 h-11 rounded-md block w-full duration-300 text-[16px];
+    @apply bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 px-3 py-1 h-11 rounded-md block w-full duration-300 leading-snug font-semibold;
     transition-property: color, border-color, box-shadow, background;
 
     &:focus {
@@ -99,7 +99,7 @@ input {
   }
 
   label {
-    @apply text-sm font-semibold mb-1 block text-slate-200
+    @apply text-sm mb-1 block text-slate-300
   }
 }
 

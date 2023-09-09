@@ -13,7 +13,7 @@
 </script>
 
 <template>
-  <li :id="'wishlist_' + id" :class="'wishlist group relative mb-4 px-5 py-4 ring-1 ring-slate-100/20 bg-slate-800 hover:bg-[#313c4e] rounded-[0.5em] overflow-hidden ease-out duration-300 cursor-pointer' + (disabled ? ' disabled' : '')">
+  <li :id="'wishlist_' + id" :class="'wishlist group relative mb-4 px-5 py-3 ring-1 ring-slate-100/20 bg-slate-800 hover:bg-[#313c4e] rounded-[0.5em] overflow-hidden ease-out duration-300 cursor-pointer' + (disabled ? ' disabled' : '')">
     <RouterLink :to="{name: 'Wishlist', params: {id: id}}" class="absolute w-full h-full top-0 left-0"></RouterLink>
     <p v-if="user" class="text-sky-500 text-sm">{{ user }}</p>
     <div class="flex gap-2 justify-between items-start">

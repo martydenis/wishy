@@ -134,25 +134,25 @@
     </p>
     <p v-if="wishlist.description" class="mt-4 text-lg">{{ wishlist.description }}</p>
 
-
-    <h2 class="text-2xl font-bold flex mt-10 gap-4 justify-between items-end text-slate-200">
-      Wishes in this list
-
-      <Button v-if="allowEditing" @click.prevent="$eventBus.emit('showWishCreationModal')" icon="add" color="sky" text="Make a wish" class="ml-auto shrink-0"></Button>
-    </h2>
-
-    <p class="mt-6 flex justify-center items-center h-px relative bg-slate-700">
-        <span v-if="wishlist.wishes && wishlist.wishes.length"
-          class="bg-slate-950 relative z-10 text-sm px-1 leading-none duration-500 -mt-1"
-          :class="{
-            'text-slate-400': (wishlist.wishes_checked_count < wishlist.wishes.length / 2),
-            'text-sky-500': (wishlist.wishes_checked_count >= wishlist.wishes.length / 2)
-          }"
-        >
-          {{ wishlist.wishes_checked_count }} / {{ wishlist.wishes.length }} {{ wishlist.wishes.length > 1 ? 'wishes checked' : 'wish checked' }}
-        </span>
+    <p class="mt-10 flex justify-center items-center h-px relative bg-slate-700">
+      <span v-if="wishlist.wishes && wishlist.wishes.length"
+        class="bg-slate-950 relative z-10 text-sm px-1 leading-none duration-500 -mt-1"
+        :class="{
+          'text-slate-400': (wishlist.wishes_checked_count < wishlist.wishes.length / 2),
+          'text-sky-500': (wishlist.wishes_checked_count >= wishlist.wishes.length / 2)
+        }"
+      >
+        {{ wishlist.wishes_checked_count }} / {{ wishlist.wishes.length }} {{ wishlist.wishes.length > 1 ? 'wishes checked' : 'wish checked' }}
+      </span>
       <span class="absolute left-0 bottom-0 h-[3px] bg-sky-500 duration-500" :style="{'width': progressWidth + '%'}"></span>
     </p>
+
+    <h2 class="text-2xl font-bold flex mt-6 mb-6 gap-4 justify-between items-center text-slate-200">
+      Wishes in this list
+
+      <Button v-if="allowEditing" @click.prevent="$eventBus.emit('showWishCreationModal')" icon="add" color="sky"
+        :text="!store.getters.isMobile ? 'Make a wish' : ''" class="ml-auto shrink-0"></Button>
+    </h2>
 
     <transition name="switch" mode="out-in" class="mt-4">
       <div v-if="wishlist.wishes && wishlist.wishes.length">
