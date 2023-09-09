@@ -17,7 +17,7 @@
     <RouterLink :to="{name: 'Wishlist', params: {id: id}}" class="absolute w-full h-full top-0 left-0"></RouterLink>
     <p v-if="user" class="text-sky-500 text-sm">{{ user }}</p>
     <div class="flex gap-2 justify-between items-start">
-      <p class="text-slate-200 text-lg leading-tight self-center"><strong>{{ name }}</strong></p>
+      <p class="text-slate-200 text-lg leading-tight self-center py-1"><strong>{{ name }}</strong></p>
 
       <div v-if="allowEditing && isAboveTablet" class="opacity-0 group-hover:opacity-100 transition-opacity flex gap-2 relative z-10">
         <Button :route="{name: 'ManageWishlist', params: {id: id}}" icon="edit" size="lg"></Button>
