@@ -152,12 +152,12 @@ textarea {
 // VIEW FADING TRANSITION
 .viewFade-enter-from {
   opacity: 0;
-  transform: translateX(-25px);
+  transform: translateX(-1rem);
 }
 
 .viewFade-leave-to {
   opacity: 0;
-  transform: translateX(25px);
+  transform: translateX(1rem);
 }
 
 .viewFade-enter-active {
