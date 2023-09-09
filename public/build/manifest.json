@@ -1,0 +1,26 @@
+{
+  "resources/img/wishr.svg": {
+    "file": "assets/wishr-0f4c2503.svg",
+    "src": "resources/img/wishr.svg"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-74367966.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "assets": [
+      "assets/wishr-0f4c2503.svg"
+    ],
+    "css": [
+      "assets/app-74367966.css"
+    ],
+    "file": "assets/app-38f76a03.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/sass/app.scss": {
+    "file": "assets/app-927d3531.css",
+    "isEntry": true,
+    "src": "resources/sass/app.scss"
+  }
+}
