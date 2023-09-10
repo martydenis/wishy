@@ -9,8 +9,8 @@
     const button = triggerer.value;
     const rect = button.getBoundingClientRect();
 
-    dropdownPosition.x = window.innerWidth - rect.left + 4
-    dropdownPosition.y = rect.top + window.scrollY
+    dropdownPosition.x = window.innerWidth - rect.left - button.offsetWidth
+    dropdownPosition.y = rect.top + window.scrollY + button.offsetHeight + 2
 
     isDropdownOpen.value = true
   }
@@ -22,7 +22,7 @@
 
 <template>
   <slot name="triggerer">
-    <button type="button" ref="triggerer" @click.stop="openDropdown" class="text-lg rounded-full text-slate-300 hover:text-slate-200 hover:bg-slate-700 ease-out duration-300 w-10 h-10 flex justify-center items-center relative z-10">
+    <button type="button" ref="triggerer" @click.stop="openDropdown" class="text-lg rounded-full text-slate-300 hover:text-slate-200 hover:bg-slate-700 ease-out duration-300 shrink-0 w-10 h-10 flex justify-center items-center relative z-10">
       <svg class="pointer-events-none"><use href="#more-vertical"/></svg>
     </button>
   </slot>
@@ -32,7 +32,7 @@
     <Transition name="switch">
       <ul v-if="isDropdownOpen" 
         @click="closeDropdown"
-        class="flex flex-col absolute z-30 rounded-xl bg-slate-800 border border-slate-700 py-3 w-36 shadow-md"
+        class="flex flex-col absolute z-30 rounded-xl bg-slate-800 py-2 w-36 shadow-md"
         :style="{ top: dropdownPosition.y + 'px', right: dropdownPosition.x + 'px' }">
         <slot></slot>
       </ul>

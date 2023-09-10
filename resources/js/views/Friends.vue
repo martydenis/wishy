@@ -3,6 +3,7 @@
   import { useStore } from 'vuex'
   import Modal from "../components/Modal.vue";
   import Friend from "../components/Friend.vue";
+  import Button from "../components/Button.vue";
 
   const store = useStore()
   const friendRequest = ref({})
@@ -136,10 +137,7 @@
     <div class="mt-4 flex items-center">
       <p v-if="friends.accepted && friends.accepted.size" class="text-slate-200">{{ friends.accepted.size }} friends</p>
 
-      <button @click.prevent="isFriendInviteModalOpen = !isFriendInviteModalOpen" type="button" class="ml-auto justify-center border border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-slate-200 hover:border-transparent rounded-full flex gap-1 py-1.5 px-4 items-center ease-out duration-300">
-        <svg><use href="#add" /></svg>
-        Find friends
-      </button>
+      <Button @click.prevent="isFriendInviteModalOpen = !isFriendInviteModalOpen" icon="add" text="Find friends" class="ml-auto"></Button>
     </div>
 
     <transition name="switch" mode="out-in"  class="mt-4">
