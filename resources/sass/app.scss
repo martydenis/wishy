@@ -46,7 +46,7 @@ input {
 
 @layer base {
   h1 {
-    @apply text-5xl/[1.1em] font-extrabold mb-[0.4em] text-slate-200;
+    @apply text-4xl sm:text-5xl/[1.1em] font-extrabold mb-[0.4em] text-slate-200;
   }
 }
 
@@ -68,7 +68,7 @@ input {
 
   .wishlist {
     &.disabled {
-      @apply bg-slate-900 pointer-events-none;
+      @apply bg-slate-950 pointer-events-none;
     }
   }
 

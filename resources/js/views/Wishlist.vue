@@ -134,9 +134,9 @@
     </p>
     <p v-if="wishlist.description" class="mt-4 text-lg">{{ wishlist.description }}</p>
 
-    <p class="mt-16 flex justify-center items-center h-px relative bg-slate-700">
+    <p class="mt-16 flex justify-center items-center relative border-b border-slate-700">
       <span v-if="wishlist.wishes && wishlist.wishes.length"
-        class="bg-slate-950 relative z-10 text-sm px-1 leading-none duration-500 -mt-1"
+        class="text-xs leading-none duration-500 mb-1"
         :class="{
           'text-slate-400': (wishlist.wishes_checked_count < wishlist.wishes.length / 2),
           'text-sky-500': (wishlist.wishes_checked_count >= wishlist.wishes.length / 2)
@@ -144,7 +144,7 @@
       >
         {{ wishlist.wishes_checked_count }} / {{ wishlist.wishes.length }} {{ wishlist.wishes.length > 1 ? 'wishes checked' : 'wish checked' }}
       </span>
-      <span class="absolute left-0 bottom-0 h-[3px] bg-sky-500 duration-500" :style="{'width': progressWidth + '%'}"></span>
+      <span class="absolute left-0 -bottom-0.5 h-0.5 bg-sky-500 duration-500" :style="{'width': progressWidth + '%'}"></span>
     </p>
 
     <h2 class="text-2xl font-bold flex mt-6 mb-6 gap-4 justify-between items-center text-slate-200">

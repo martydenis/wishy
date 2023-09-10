@@ -8,9 +8,9 @@
 <template>
   <nav class="bg-slate-900 border-slate-800 max-lg:border-t lg:border-r lg:py-6 fixed z-50 w-full bottom-0 left-0 h-[4.5rem] lg:h-full lg:w-60">
     <ul class="px-2 md:px-4 max-w-sm mx-auto flex lg:gap-2 lg:flex-col max-lg:text-xs h-full justify-center">
-      <li class="hidden lg:block mt-3 mb-4 px-4">
-        <RouterLink :to="{name: 'Home'}" class="nav-logo active:opacity-75 duration-300">
-          <img src="../../img/wishr.svg" alt="Wishr" width="40" class="">
+      <li class="hidden lg:flex my-3">
+        <RouterLink :to="{name: 'Home'}" class="nav-logo block active:opacity-75 duration-300 px-4 py-2">
+          <img src="../../img/wishr.svg" alt="Wishr" width="40">
         </RouterLink>
       </li>
       <li class="max-lg:flex-1 min-w-0">

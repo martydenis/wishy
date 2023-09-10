@@ -37,7 +37,7 @@
 <template>
   <li :id="'wishlist_wish_' + position"
     @click="emitCheckWish"
-    class="wish group mb-2 w-auto px-2 py-1 sm:px-4 sm:py-3 flex gap-4 duration-200 rounded-xl active:bg-slate-900"
+    class="wish group mb-2 w-auto px-3 py-2 flex gap-4 duration-200 rounded-xl active:bg-slate-900"
     :class="{ 'wish-ok': !errors && !checked, disabled: disabled, checked: checked, error: errors, 'cursor-pointer' : allowChecking }"
     >
     <span
@@ -50,7 +50,7 @@
     </span>
 
     <div class="flex-grow flex-shrink py-2">
-      <p class="wish-name duration-300 leading-normal" :class="{'line-through': checked, 'text-slate-200 group-active:text-sky-500': !errors && !checked}"><strong>{{ name }}</strong></p>
+      <p class="wish-name text-lg duration-300 leading-snug" :class="{'line-through': checked, 'text-slate-200 group-active:text-sky-500': !errors && !checked}"><strong>{{ name }}</strong></p>
       <p class="text-sm flex gap-3 mt-1 ml-1 break-all"  v-if="url" href="{{ url }}" target="_blank">
         <svg class="w-4 shrink-0 mt-0.5"><use href="#link"/></svg>
         {{ url }}
