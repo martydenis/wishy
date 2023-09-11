@@ -86,9 +86,10 @@
   const addWish = (params) => {
     const wishToAdd = params.wish
 
-    if (params.position) {
+    if (params.position !== null) {
       const position = parseInt(params.position)
-      fields.value.wishes[position] = { ...wishToAdd };
+      const wish = fields.value.wishes[position];
+      fields.value.wishes[position] = { ...wish, ...wishToAdd };
     } else {
       wishToAdd.key = Math.round(Math.random() * 1000000);
       fields.value.wishes.push(wishToAdd);

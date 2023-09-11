@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, inject, onMounted, onUnmounted } from 'vue'
+  import { ref, inject, onMounted, onUnmounted, watch } from 'vue'
   import Modal from "../components/Modal.vue";
 
   const $eventBus = inject('$eventBus')
@@ -39,6 +39,8 @@
     if (data) {
       wish.value = {...wish.value, ...data.wish}
       position = data.position
+    } else {
+      position = null
     }
 
     isEditing.value = Object.keys(wish.value).length > 0
