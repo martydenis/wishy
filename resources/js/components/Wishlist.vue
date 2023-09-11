@@ -19,14 +19,16 @@
     <div class="flex gap-2 justify-between items-start">
       <p class="text-slate-200 text-lg leading-tight self-center py-1"><strong>{{ name }}</strong></p>
 
-      <div v-if="allowEditing && isAboveTablet" class="opacity-0 group-hover:opacity-100 transition-opacity flex gap-2 relative z-10 -my-1">
-        <Button :route="{name: 'ManageWishlist', params: {id: id}}" icon="edit" size="lg"></Button>
-        <Button @click.stop="$emit('deleteWishlist', id)" icon="delete" color="rose" size="lg"></Button>
+      <div v-if="allowEditing" class="-mt-2 -mr-4">
+        <div v-if="isAboveTablet" class="opacity-0 group-hover:opacity-100 transition-opacity flex gap-2 relative z-10 -my-1">
+          <Button :route="{name: 'ManageWishlist', params: {id: id}}" icon="edit" size="lg"></Button>
+          <Button @click.stop="$emit('deleteWishlist', id)" icon="delete" color="rose" size="lg"></Button>
+        </div>
+        <Dropdown v-else>
+          <DropdownItem :route="{name: 'ManageWishlist', params: {id: id}}" icon="edit" text="Edit"></DropdownItem>
+          <DropdownItem @click="$emit('deleteWishlist', id)" icon="delete" text="Delete"></DropdownItem>
+        </Dropdown>
       </div>
-      <Dropdown v-if="allowEditing && !isAboveTablet">
-        <DropdownItem :route="{name: 'ManageWishlist', params: {id: id}}" icon="edit" text="Edit"></DropdownItem>
-        <DropdownItem @click="$emit('deleteWishlist', id)" icon="delete" text="Delete"></DropdownItem>
-      </Dropdown>
     </div>
 
     <p class="flex flex-wrap gap-x-3 sm:gap-x-6 text-slate-400 text-xs sm:text-sm mt-1">

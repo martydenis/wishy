@@ -32,7 +32,7 @@
     <Transition name="switch">
       <ul v-if="isDropdownOpen" 
         @click="closeDropdown"
-        class="flex flex-col absolute z-30 rounded-xl bg-slate-800 py-2 w-36 shadow-md"
+        class="flex flex-col absolute z-30 rounded-xl bg-slate-800 py-2 w-40 shadow-md"
         :style="{ top: dropdownPosition.y + 'px', right: dropdownPosition.x + 'px' }">
         <slot></slot>
       </ul>
