@@ -4,7 +4,7 @@
     "src": "resources/img/wishr.svg"
   },
   "resources/js/app.css": {
-    "file": "assets/app-5f13b5c0.css",
+    "file": "assets/app-798553e3.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -12,14 +12,14 @@
       "assets/wishr-0f4c2503.svg"
     ],
     "css": [
-      "assets/app-5f13b5c0.css"
+      "assets/app-798553e3.css"
     ],
-    "file": "assets/app-601ae956.js",
+    "file": "assets/app-8be79eba.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-48e0742d.css",
+    "file": "assets/app-a180c1fc.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   }
