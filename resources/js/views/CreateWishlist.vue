@@ -139,12 +139,40 @@
 </script>
 
 <template>
-  <div class="max-w-xl xl:max-w-screen-lg mx-auto max-md:mb-20">
-    <h1 class="mb-6 md:mb-12 max-sm:text-3xl">{{ id ? 'Manage your wishlist' : 'Create a new wishlist'}}</h1>
+  <div class="max-w-screen-md xl:max-w-screen-lg mx-auto max-md:mb-20">
+    <h1 class="mb-8 md:mb-12 max-sm:text-3xl">{{ id ? 'Manage your wishlist' : 'Create a new wishlist'}}</h1>
 
     <form @submit.prevent="submit">
-      <div class="flex max-xl:flex-col gap-8 xl:gap-14">
-        <div class="rounded-2xl p-6 lg:p-8 bg-slate-900 ring-1 ring-inset ring-white/10 xl:w-96 xl:self-start">
+      <div class="flex flex-col md:flex-row-reverse gap-8 xl:gap-14">
+        <div class="grow">
+          <h2 class="text-xl md:text-2xl font-bold flex gap-y-2 gap-x-8 flex-wrap items-center text-slate-200">
+            What are you wishing for ?
+
+            <Button @click.prevent="$eventBus.emit('showWishCreationModal')" icon="add" :text="!store.getters.isMobile ? 'Make a wish' : ''"></Button>
+          </h2>
+
+          <transition-group appear name="list" tag="ol" class="transition-list mt-4" v-if="fields.wishes.length">
+            <Wish
+              v-for="(wish, index) in fields.wishes"
+              :key="wish.id || wish.key"
+              :position="index"
+              :id="wish.id || wish.key"
+              :name="wish.name"
+              :errors="wish.errors"
+              :checked="wish.checked"
+              :description="wish.description"
+              :url="wish.url"
+              :disabled="wish.isDisabled"
+              :allow-checking="true"
+              :allow-deleting="true"
+              @check-wish="checkWish"
+              @delete-wish="deleteWish" />
+          </transition-group>
+
+          <p v-else class="mt-4">This wishlist is empty at this moment.<br>Click on the button up here to make a wish.</p>
+        </div>
+
+        <div class="rounded-2xl p-6 lg:p-8 bg-slate-900 ring-1 ring-inset ring-white/10 lg:w-96 xl:self-start">
           <h2 class="text-xl md:text-2xl font-bold mb-4 text-slate-200">What's your list about&nbsp;?</h2>
           <label for="name" class="mt-4" :class="{'text-rose-600': 'name' in errors}">Name</label>
           <input type="text" id="name"
@@ -174,35 +202,7 @@
           <p v-else-if="fields.privacy == 1" class="text-sm leading-snug text-slate-400">You can select the friends that will be allowed to see this list and check its wishes</p>
           <p v-else class="text-sm leading-snug text-slate-400">All your friends can see this list and check its wishes</p>
 
-          <Button type="submit" size="lg" color="sky" :icon="id ? 'save' : 'add'" :text="id ? 'Save' : 'Create'" block class="mt-4"></Button>
-        </div>
-
-        <div class="grow">
-          <h2 class="text-2xl font-bold flex gap-y-2 gap-x-8 flex-wrap justify-between items-center text-slate-200">
-            Wishes in your list
-
-            <Button @click.prevent="$eventBus.emit('showWishCreationModal')" icon="add" :text="!store.getters.isMobile ? 'Make a wish' : ''"></Button>
-          </h2>
-
-          <transition-group appear name="list" tag="ol" class="transition-list mt-4" v-if="fields.wishes.length">
-            <Wish
-              v-for="(wish, index) in fields.wishes"
-              :key="wish.id || wish.key"
-              :position="index"
-              :id="wish.id || wish.key"
-              :name="wish.name"
-              :errors="wish.errors"
-              :checked="wish.checked"
-              :description="wish.description"
-              :url="wish.url"
-              :disabled="wish.isDisabled"
-              :allow-checking="true"
-              :allow-deleting="true"
-              @check-wish="checkWish"
-              @delete-wish="deleteWish" />
-          </transition-group>
-
-          <p v-else class="mt-4">This wishlist is empty at this moment.<br>Click on the button up here to make a wish.</p>
+          <Button type="submit" size="lg" color="sky" :icon="id ? 'save' : 'add'" :text="id ? 'Save' : 'Create'" class="mt-4 max-md:fixed bottom-20 right-5 md:w-full"></Button>
         </div>
       </div>
     </form>
