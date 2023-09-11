@@ -172,7 +172,7 @@
           <p v-else class="mt-4">This wishlist is empty at this moment.<br>Click on the button up here to make a wish.</p>
         </div>
 
-        <div class="rounded-2xl p-6 lg:p-8 bg-slate-900 ring-1 ring-inset ring-white/10 lg:w-96 xl:self-start">
+        <div class="rounded-2xl p-6 lg:p-8 bg-slate-900 ring-1 ring-inset ring-white/10 lg:w-80 xl:w-96 shrink-0 xl:self-start">
           <h2 class="text-xl md:text-2xl font-bold mb-4 text-slate-200">What's your list about&nbsp;?</h2>
           <label for="name" class="mt-4" :class="{'text-rose-600': 'name' in errors}">Name</label>
           <input type="text" id="name"
@@ -202,7 +202,10 @@
           <p v-else-if="fields.privacy == 1" class="text-sm leading-snug text-slate-400">You can select the friends that will be allowed to see this list and check its wishes</p>
           <p v-else class="text-sm leading-snug text-slate-400">All your friends can see this list and check its wishes</p>
 
-          <Button type="submit" size="lg" color="sky" :icon="id ? 'save' : 'add'" :text="id ? 'Save' : 'Create'" class="mt-4 max-md:fixed bottom-20 right-5 md:w-full"></Button>
+          <Teleport to="body" v-if="store.getters.isMobile">
+            <Button type="submit" size="lg" color="sky" :icon="id ? 'save' : 'add'" :text="id ? 'Save' : 'Create'" class="mt-4 max-md:fixed bottom-20 right-5 md:w-full"></Button>
+          </Teleport>
+          <Button v-else type="submit" size="lg" color="sky" :icon="id ? 'save' : 'add'" :text="id ? 'Save' : 'Create'" class="mt-4 max-md:fixed bottom-20 right-5 md:w-full"></Button>
         </div>
       </div>
     </form>
