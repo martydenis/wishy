@@ -117,7 +117,7 @@
 </script>
 
 <template>
-  <div v-if="wishlist" class="max-w-screen-md mx-auto max-md:mb-20">
+  <div v-if="wishlist" class="max-w-screen-md mx-auto max-md:mb-24">
     <h1>{{ wishlist.name ? wishlist.name : '...' }}</h1>
 
     <p v-if="wishlist.user" class="text-xl font-bold text-slate-200 flex items-center gap-y-2 gap-x-5">
@@ -134,7 +134,7 @@
     </p>
     <p v-if="wishlist.description" class="mt-4 text-lg">{{ wishlist.description }}</p>
 
-    <p class="mt-16 flex justify-center items-center relative border-b border-slate-700">
+    <p class="mt-14 flex justify-center items-center relative border-b border-slate-700">
       <span v-if="wishlist.wishes && wishlist.wishes.length"
         class="text-xs leading-none duration-500 mb-1"
         :class="{
@@ -147,7 +147,7 @@
       <span class="absolute left-0 -bottom-0.5 h-0.5 bg-sky-500 duration-500" :style="{'width': progressWidth + '%'}"></span>
     </p>
 
-    <h2 class="text-2xl font-bold flex mt-6 mb-6 gap-4 justify-between items-center text-slate-200">
+    <h2 class="text-2xl font-bold flex mt-8 mb-5 gap-4 justify-between items-center text-slate-200">
       Wishes in this list
 
       <Button v-if="allowEditing" @click.prevent="$eventBus.emit('showWishCreationModal')" icon="add" color="sky"

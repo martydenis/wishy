@@ -1,8 +1,5 @@
 <script setup>
-  import { useStore } from 'vuex'
   import NavItem from './NavItem.vue'
-
-  const store = useStore()
 </script>
 
 <template>

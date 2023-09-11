@@ -57,7 +57,7 @@
 </script>
 
 <template>
-  <div class="max-w-screen-md mx-auto">
+  <div class="max-w-screen-md mx-auto max-md:mb-24">
     <h1>My wishlists</h1>
 
     <div class="flex flex-wrap justify-between items-center gap-4 mb-8">
