@@ -43,7 +43,7 @@
         :class="{'error': 'password' in errors}">
       <span v-if="errors.password" class="text-rose-600 text-sm">{{ errors.password[0] }}</span>
 
-      <button type="submit" class="mt-8 block text-white bg-sky-500 w-full rounded-full h-[2.75em]">Login</button>
+      <Button type="submit" class="mt-8" text="Login" block color="sky" size="lg"></Button>
     </form>
     <p class="text-center mt-4 mb-2 text-slate-400">Don't have an account ?</p>
     <RouterLink :to="{name: 'Register'}" class="inline-block p-1 ease-out duration-300 text-slate-200 underline underline-offset-4">Register</RouterLink>

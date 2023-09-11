@@ -55,7 +55,7 @@
       <input type="password" id="password_confirmation"
         v-model="fields.password_confirmation">
 
-      <button type="submit" class="mt-8 block text-white bg-sky-500 w-full rounded-full h-[2.75em]">Sign up</button>
+      <Button type="submit" class="mt-8" text="Register" block color="sky" size="lg"></Button>
     </form>
     <p class="text-center mt-4 mb-2 text-slate-400">Already have an account ?</p>
     <RouterLink :to="{name: 'Login'}" class="inline-block p-1 ease-out duration-300 text-slate-200 underline underline-offset-4">Login</RouterLink>
