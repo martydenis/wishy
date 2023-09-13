@@ -116,7 +116,7 @@
 </script>
 
 <template>
-  <div class="max-w-md mx-auto">
+  <div class="max-w-lg mx-auto">
     <h1>Your friends</h1>
 
     <div v-if="friends.pending && friends.pending.size" class="mt-4 border-b border-slate-800 pb-4">
@@ -135,7 +135,7 @@
     </div>
 
     <div class="mt-4 flex items-center">
-      <p v-if="friends.accepted && friends.accepted.size" class="text-slate-200">{{ friends.accepted.size }} friends</p>
+      <p v-if="friends.accepted && friends.accepted.size" class="text-slate-200">{{ friends.accepted.size }} {{ friends.accepted.size > 1 ? 'friends' : 'friend'}}</p>
 
       <Button @click.prevent="isFriendInviteModalOpen = !isFriendInviteModalOpen" icon="add" text="Find friends" class="ml-auto"></Button>
     </div>
