@@ -32,7 +32,7 @@
   }
 
   const btnPaddingX = props.text ? 'btn-has-text' : '';
-  const btnFullWidth = typeof props.block != 'undefined' || props.block === '' || props.block ? 'w-full' : '';
+  const btnFullWidth = typeof props.block != 'undefined' && (props.block === '' || props.block) ? 'w-full' : '';
 </script>
 
 <template>
