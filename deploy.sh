@@ -10,8 +10,6 @@ ssh $SSH_HOST << EOF
 # Navigate to the app directory
 cd $APP_PATH
 
-source ~/.nvm/nvm.sh
-
 # Install/update Composer dependencies
 composer install --no-interaction --no-dev --prefer-dist
 
