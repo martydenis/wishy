@@ -1,82 +1,64 @@
 <script setup>
   import { RouterLink } from 'vue-router'
-  const props = defineProps(['route', 'icon', 'text', 'color', 'size', 'type', 'block'])
+  const props = defineProps(['route', 'icon', 'text', 'color', 'size', 'type', 'block', 'disabled'])
 
   let btnColor = '';
   switch (props.color) {
     case 'sky':
-      btnColor = 'btn-sky'
+      btnColor = 'bg-sky-500 text-slate-200 hover:bg-sky-600'
       break;
     case 'rose':
-      btnColor = 'btn-rose'
+      btnColor = 'bg-slate-800 text-slate-200 hover:bg-rose-600 hover:text-rose-200'
       break;
     default:
-      btnColor = 'btn-default'
+      btnColor = 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-slate-200'
       break;
   }
 
   let btnSize = '';
   switch (props.size) {
     case 'sm':
-      btnSize = 'btn-sm'
+      btnSize = 'min-w-[2rem] h-9 text-sm'
       break;
     case 'lg':
-      btnSize = 'btn-lg'
+      btnSize = 'min-w-[2.75rem] h-11 text-[1.0625rem]'
+      break;
+    case 'floating':
+      btnSize = 'fixed z-30 bottom-20 right-5 h-16 w-16 text-xl'
       break;
     default:
-      btnSize = 'btn-md'
+      btnSize = 'min-w-[2.5rem] h-10 text-md'
       break;
   }
 
   const btnPaddingX = props.text ? 'btn-has-text' : '';
-  const btnFullWidth = typeof props.block != 'undefined' ? 'w-full' : '';
+  const btnFullWidth = typeof props.block != 'undefined' || props.block === '' || props.block ? 'w-full' : '';
 </script>
 
 <template>
-  <button v-if="!route" :type="type" class="rounded-full flex gap-2 items-center justify-center ease-out duration-300" :class="[btnColor, btnSize, btnPaddingX, btnFullWidth]">
+  <button v-if="!route"
+    :type="type"
+    class="btn rounded-full flex gap-2 items-center justify-center ease-out duration-300"
+    :class="[disabled ? 'pointer-events-none bg-slate-800 text-slate-500' : btnColor, btnSize, btnPaddingX, btnFullWidth]">
     <svg v-if="icon" class="shrink-0" :class="{'text-[0.925em]': text, 'text-[1em]': !text}"><use :href="'#' + icon"/></svg>
     <span v-if="text" class="leading-tight whitespace-nowrap">{{ text }}</span>
   </button>
-  <RouterLink v-else :to="route" class="rounded-full flex gap-2 items-center justify-center ease-out duration-300" :class="[btnColor, btnSize, btnPaddingX, btnFullWidth]">
+  <RouterLink v-else
+    :to="route"
+    class="btn rounded-full flex gap-2 items-center justify-center ease-out duration-300"
+    :class="[disabled ? 'pointer-events-none bg-slate-800 text-slate-500' : btnColor, btnSize, btnPaddingX, btnFullWidth]">
     <svg v-if="icon" class="shrink-0" :class="{'text-[0.925em]': text, 'text-[1em]': !text}"><use :href="'#' + icon"/></svg>
     <span v-if="text" class="leading-tight whitespace-nowrap">{{ text }}</span>
   </RouterLink>
 </template>
 
 <style lang="scss">
-  .btn-sm {
-    padding: var(--btn-padding);
-    @apply min-w-[2rem] h-8 text-sm;
-  }
-
-  .btn-md {
-    padding: var(--btn-padding);
-    @apply min-w-[2.5rem] h-10 text-md;
-  }
-
-  .btn-lg {
-    padding: var(--btn-padding);
-    @apply min-w-[2.75rem] h-11 text-lg;
-  }
-
   .btn-has-text {
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: 1.2em;
+    padding-right: 1.2em;
   }
 
-  .btn-default {
-    @apply bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-slate-200;
-  }
-
-  .btn-rose {
-    @apply bg-slate-800 text-slate-200 hover:bg-rose-600 hover:text-rose-200;
-  }
-
-  .btn-sky {
-    @apply bg-sky-500 text-slate-200 hover:bg-sky-600;
-  }
-
-  .btn-disabled {
-    @apply pointer-events-none bg-slate-800 text-slate-500;
-  }
+  // .btn-disabled {
+  //   @apply pointer-events-none bg-slate-800 text-slate-500;
+  // }
 </style>

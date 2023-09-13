@@ -139,7 +139,7 @@
 </script>
 
 <template>
-  <div class="max-w-screen-md xl:max-w-screen-lg mx-auto max-md:mb-20">
+  <div class="max-md:mb-20">
     <h1 class="mb-8 md:mb-12 max-sm:text-3xl">{{ id ? 'Manage your wishlist' : 'Create a new wishlist'}}</h1>
 
     <form @submit.prevent="submit">
@@ -148,7 +148,7 @@
           <h2 class="text-xl md:text-2xl font-bold flex gap-y-2 gap-x-8 flex-wrap items-center text-slate-200">
             What are you wishing for ?
 
-            <Button @click.prevent="$eventBus.emit('showWishCreationModal')" icon="add" :text="!store.getters.isMobile ? 'Make a wish' : ''"></Button>
+            <Button @click.prevent="$eventBus.emit('showWishCreationModal')" icon="add" :text="!store.getters.isMobile ? 'Make a wish' : ''" color="sky" class="ml-auto"></Button>
           </h2>
 
           <transition-group appear name="list" tag="ol" class="transition-list mt-4" v-if="fields.wishes.length">
@@ -172,20 +172,20 @@
           <p v-else class="mt-4">This wishlist is empty at this moment.<br>Click on the button up here to make a wish.</p>
         </div>
 
-        <div class="rounded-2xl p-6 lg:p-8 bg-slate-900 ring-1 ring-inset ring-white/10 lg:w-80 xl:w-96 shrink-0 xl:self-start">
+        <div class="rounded-2xl p-6 lg:p-10 bg-slate-900 md:w-80 xl:w-96 shrink-0 xl:self-start">
           <h2 class="text-xl md:text-2xl font-bold mb-4 text-slate-200">What's your list about&nbsp;?</h2>
-          <label for="name" class="mt-4" :class="{'text-rose-600': 'name' in errors}">Name</label>
+          <label for="name" class="mt-6" :class="{'text-rose-600': 'name' in errors}">Name</label>
           <input type="text" id="name"
             v-model="fields.name"
             :class="{'error': 'name' in errors}">
           <span v-if="errors.name" class="text-rose-600 text-sm">{{ errors.name[0] }}</span>
 
-          <label for="description" class="mt-4">Description (optional)</label>
+          <label for="description" class="mt-6">Description (optional)</label>
           <textarea id="description"
             v-model="fields.description" >
           </textarea>
 
-          <p class="flex justify-between mt-4">
+          <p class="flex justify-between mt-6">
             <label for="privacy">Privacy</label>
             <p v-if="fields.privacy == 1" class="text-sm text-sky-500 underline hover:no-underline cursor-pointer" @click="toggleWishlistSharingModal(null)">
               <span v-if="!fields.friends_shared_with.length">Share with friends</span>
@@ -202,10 +202,14 @@
           <p v-else-if="fields.privacy == 1" class="text-sm leading-snug text-slate-400">You can select the friends that will be allowed to see this list and check its wishes</p>
           <p v-else class="text-sm leading-snug text-slate-400">All your friends can see this list and check its wishes</p>
 
-          <Teleport to="body" v-if="store.getters.isMobile">
-            <Button type="submit" size="lg" color="sky" :icon="id ? 'save' : 'add'" :text="id ? 'Save' : 'Create'" class="mt-4 max-md:fixed bottom-20 right-5 md:w-full"></Button>
+          <Teleport to="body" :disabled="!store.getters.isMobile" >
+            <Button type="submit" color="sky"
+              class="mt-4"
+              :icon="id ? 'save' : 'add'"
+              :text="store.getters.isMobile ? '' : (id ? 'Save' : 'Create')"
+              :size="store.getters.isMobile ? 'floating' : 'lg'"
+              :block="!store.getters.isMobile"></Button>
           </Teleport>
-          <Button v-else type="submit" size="lg" color="sky" :icon="id ? 'save' : 'add'" :text="id ? 'Save' : 'Create'" class="mt-4 max-md:fixed bottom-20 right-5 md:w-full"></Button>
         </div>
       </div>
     </form>

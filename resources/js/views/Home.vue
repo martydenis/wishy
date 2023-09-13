@@ -1,9 +1,9 @@
 <script setup>
   import { ref, computed } from 'vue'
-  import { RouterLink } from 'vue-router'
   import { useStore } from 'vuex'
   import Wishlist from '../components/Wishlist.vue'
   import Modal from '../components/Modal.vue'
+  import Button from '../components/Button.vue'
 
   const store = useStore()
   const username = store.getters.user.name
@@ -57,16 +57,13 @@
 </script>
 
 <template>
-  <div class="max-w-screen-md mx-auto max-md:mb-24">
+  <div class="max-md:mb-24">
     <h1>My wishlists</h1>
 
     <div class="flex flex-wrap justify-between items-center gap-4 mb-8">
       <p class="grow text-slate-400" v-if="wishlists">Hi {{ username }}, you have {{ wishlists.length }} <span v-if="wishlists.length > 1">lists</span><span v-else>list</span></p>
 
-      <RouterLink :to="{name: 'CreateWishlist'}" class="bg-slate-800 text-slate-300 border border-slate-700 rounded-full flex gap-2 py-1.5 px-4 items-center ease-out duration-300 hover:bg-slate-700 hover:text-slate-200">
-        <svg><use href="#add"/></svg>
-        Create a wishlist
-      </RouterLink>
+      <Button :to="{name: 'CreateWishlist'}" icon="add" text="New wishlist"></Button>
     </div>
 
     <transition-group

@@ -5,7 +5,6 @@
   import Modal from '../components/Modal.vue'
 
   const store = useStore()
-  const router = useRouter()
   const isDeleteUserModalShown = ref(false)
 
   const toggleDeleteUserModal = () => {

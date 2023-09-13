@@ -117,37 +117,37 @@
 </script>
 
 <template>
-  <div v-if="wishlist" class="max-w-screen-md mx-auto max-md:mb-24">
+  <div v-if="wishlist" class="max-md:mb-24">
     <h1>{{ wishlist.name ? wishlist.name : '...' }}</h1>
 
     <p v-if="wishlist.user" class="text-xl font-bold text-slate-200 flex items-center gap-y-2 gap-x-5">
       <span class="flex items-baseline flex-wrap gap-x-5">
         {{ wishlist.user.name }}
 
-        <span class="text-slate-400 font-normal text-sm flex gap-1.5 items-center">
+        <span class="text-slate-400 font-normal text-sm flex gap-1.5 items-center mr-4">
           <svg class="text-[0.75em]"><use href="#clock" /></svg>
           {{ wishlist.created_at_formatted }}
         </span>
       </span>
 
-      <Button v-if="allowEditing" :route="{name: 'ManageWishlist', id: wishlist.id}" icon="edit" text="Manage" class="ml-auto"></Button>
+      <Button :route="{name: 'ManageWishlist', id: wishlist.id}" icon="edit" text="Manage" size="sm" v-if="allowEditing"></Button>
     </p>
-    <p v-if="wishlist.description" class="mt-4 text-lg">{{ wishlist.description }}</p>
+    <p v-if="wishlist.description" class="mt-8 max-w-screen-md text-lg">{{ wishlist.description }}</p>
 
-    <p class="mt-14 flex justify-center items-center relative border-b border-slate-700">
+    <p class="mt-8 flex justify-center items-center relative border-b border-slate-700">
       <span v-if="wishlist.wishes && wishlist.wishes.length"
-        class="text-xs leading-none duration-500 mb-1"
+        class="text-xs leading-none duration-500 -mb-[0.5em] flex items-center gap-1 px-1 bg-slate-950 relative z-10"
         :class="{
           'text-slate-400': (wishlist.wishes_checked_count < wishlist.wishes.length / 2),
           'text-sky-500': (wishlist.wishes_checked_count >= wishlist.wishes.length / 2)
         }"
       >
-        {{ wishlist.wishes_checked_count }} / {{ wishlist.wishes.length }} {{ wishlist.wishes.length > 1 ? 'wishes checked' : 'wish checked' }}
+        <svg><use href="#check"/></svg> {{ wishlist.wishes_checked_count }} / {{ wishlist.wishes.length }}
       </span>
       <span class="absolute left-0 -bottom-0.5 h-0.5 bg-sky-500 duration-500" :style="{'width': progressWidth + '%'}"></span>
     </p>
 
-    <h2 class="text-2xl font-bold flex mt-8 mb-5 gap-4 justify-between items-center text-slate-200">
+    <h2 class="text-2xl font-bold flex mt-14 mb-5 gap-4 justify-between items-center text-slate-200">
       Wishes in this list
 
       <Button v-if="allowEditing" @click.prevent="$eventBus.emit('showWishCreationModal')" icon="add" color="sky"
