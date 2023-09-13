@@ -10,6 +10,8 @@ ssh $SSH_HOST << EOF
 # Navigate to the app directory
 cd $APP_PATH
 
+source ~/.nvm/nvm.sh
+
 # Install/update Composer dependencies
 composer install --no-interaction --no-dev --prefer-dist
 
@@ -21,6 +23,9 @@ php artisan migrate
 
 # Clean up cache
 php artisan optimize:clear
+
+# Building node packages for production
+npm run build
 
 # restart Apache
 sudo systemctl restart apache2
