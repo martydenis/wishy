@@ -24,7 +24,7 @@
       btnSize = 'min-w-[2.75rem] h-11 text-[1.0625rem]'
       break;
     case 'floating':
-      btnSize = 'fixed z-30 bottom-20 right-5 h-16 w-16 text-xl'
+      btnSize = 'fixed z-30 bottom-24 right-5 h-16 w-16 text-xl'
       break;
     default:
       btnSize = 'min-w-[2.5rem] h-10 text-md'
