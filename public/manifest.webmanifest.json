@@ -1,6 +1,8 @@
 {
-  "name": "Wishr",
-  "background_color": "#55a2d9",
+  "name": "Wishy",
+  "theme_color": "#55a2d9",
+  "background_color": "#030616",
+  "display": "minimal-ui",
   "icons": [
     { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
     { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
