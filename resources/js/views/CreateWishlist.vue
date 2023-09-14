@@ -241,10 +241,10 @@
               <svg v-else><use href="#user" /></svg>
             </transition>
           </i>
-          <span class="flex-grow overflow-hidden w-full leading-tight font-bold">{{ friend.name }}</span>
+          <span class="flex-grow text-lg overflow-hidden w-full leading-tight font-bold">{{ friend.name }}</span>
         </li>
       </ul>
-      <p v-else>Invite some friends on Wishr first, you will then be able to share this list with them</p>
+      <p v-else>Invite some friends on Wishy first, you will then be able to share this list with them</p>
 
       <template #yes-button>Ok</template>
     </Modal>

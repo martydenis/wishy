@@ -33,7 +33,7 @@
 <template>
   <div class="">
     <h1>Shared with you</h1>
-    <p class="text-slate-200">You will find here the wishlists that your friends have shared with you.</p>
+    <p>Here you will find the wishlists that your friends have shared with you.</p>
 
     <transition name="switch" mode="out-in" class="mt-8">
       <div v-if="wishlists && wishlists.length">

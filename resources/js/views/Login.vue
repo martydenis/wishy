@@ -24,10 +24,10 @@
 
 <template>
   <div class="h-full flex flex-col justify-center items-center w-full max-w-sm mx-auto">
-    <img src="../../img/wishr.svg" alt="Wishr" width="72">
-    <h1 class="text-center text-xl mt-4">Wishr</h1>
+    <img src="../../img/wishy.svg" alt="Wishy" width="72">
+    <h1 class="text-center text-xl mt-4">Wishy</h1>
     <form @submit.prevent="submit" class="mt-8 w-full rounded-2xl p-5 sm:p-8 bg-slate-900 ring-1 ring-inset ring-white/10">
-      <h2 class="text-2xl text-center font-semibold mb-6 text-slate-200">Login</h2>
+      <h2 class="text-2xl font-semibold mb-6 text-slate-200">Login</h2>
 
       <label for="email"
         :class="'mt-5' + ('email' in errors ? ' text-rose-600' : '')">Email</label>

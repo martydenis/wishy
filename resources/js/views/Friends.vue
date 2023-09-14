@@ -135,7 +135,7 @@
     </div>
 
     <div class="mt-4 flex items-center">
-      <p v-if="friends.accepted && friends.accepted.size" class="text-slate-200">{{ friends.accepted.size }} {{ friends.accepted.size > 1 ? 'friends' : 'friend'}}</p>
+      <p v-if="friends.accepted && friends.accepted.size">{{ friends.accepted.size }} {{ friends.accepted.size > 1 ? 'friends' : 'friend'}}</p>
 
       <Button @click.prevent="isFriendInviteModalOpen = !isFriendInviteModalOpen" icon="add" text="Find friends" class="ml-auto"></Button>
     </div>
