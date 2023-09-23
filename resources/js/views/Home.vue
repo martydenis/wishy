@@ -63,7 +63,7 @@
     <div class="flex flex-wrap justify-between items-center gap-4 mb-8">
       <p class="grow text-slate-400" v-if="wishlists">Hi {{ username }}, you have {{ wishlists.length }} <span v-if="wishlists.length > 1">lists</span><span v-else>list</span></p>
 
-      <Button :to="{name: 'CreateWishlist'}" icon="add" text="New wishlist"></Button>
+      <Button :route="{name: 'CreateWishlist'}" icon="add" text="New wishlist"></Button>
     </div>
 
     <transition-group
