@@ -13,7 +13,7 @@
   const store = useStore()
   const props = defineProps(['id'])
   const isEditing = !!props.id;
-  const errors = reactive({})
+  const errors = ref({})
   const friendsSharedWith = ref(new Map());
   const fields = ref({
     privacy: 0,
@@ -62,17 +62,17 @@
           return;
         }
 
-        const errors = result.response.data.errors;
+        const requestErrors = result.response.data.errors;
 
-        if (errors && errors.wishes) {
-          for (const wishId in errors.wishes) {
-            const error = errors.wishes[wishId]
+        if (requestErrors && requestErrors.wishes) {
+          for (const wishId in requestErrors.wishes) {
+            const error = requestErrors.wishes[wishId]
 
             fields.value.wishes[wishId].errors = error
           }
         }
 
-        return errors.value = errors
+        return errors.value = requestErrors
       })
       .finally(() => {
         isFormDisabled.value = false;
@@ -202,10 +202,10 @@
           <p v-else-if="fields.privacy == 1" class="text-sm leading-snug text-slate-400">You can select the friends that will be allowed to see this list and check its wishes</p>
           <p v-else class="text-sm leading-snug text-slate-400">All your friends can see this list and check its wishes</p>
 
-          <Teleport to="body" :disabled="!store.getters.isMobile" >
-            <Button type="submit" color="sky"
+          <Teleport to="body" :disabled="!store.getters.isMobile">
+            <Button type="submit" @click.prevent="submit" color="sky"
               class="mt-4"
-              :icon="id ? 'save' : 'add'"
+              icon="save"
               :text="store.getters.isMobile ? '' : (id ? 'Save' : 'Create')"
               :size="store.getters.isMobile ? 'floating' : 'lg'"
               :block="!store.getters.isMobile"></Button>
